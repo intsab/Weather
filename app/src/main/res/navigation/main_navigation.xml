@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/dashboard">
+
+    <fragment
+        android:id="@+id/dashboard"
+        android:name="com.intsab.intsabwether.fragments.dashboard.WeatherDashboardFragment"
+        android:label="First Fragment"
+        tools:layout="@layout/fragment_wether_details">
+        <action
+            android:id="@+id/action_dashboard_to_weekly_list"
+            app:destination="@id/weeklyListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/weeklyListFragment"
+        android:name="com.intsab.intsabwether.fragments.weeklylist.WeeklyListFragment"
+        android:label="Second Fragment"
+        tools:layout="@layout/fragment_weekly_list">
+        <action
+            android:id="@+id/action_weeklyListFragment_to_details"
+            app:destination="@id/weeklyListDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weeklyListDetailFragment"
+        android:name="com.intsab.intsabwether.fragments.details.DetailsFragment"
+        android:label="Day Details"
+        tools:layout="@layout/fragment_details" />
+</navigation>
