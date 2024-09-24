@@ -33,7 +33,7 @@ android {
 }
 
 dependencies {
-    implementation("com.google.dagger:dagger:2.48.1")
+    api("com.google.dagger:dagger:2.48.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

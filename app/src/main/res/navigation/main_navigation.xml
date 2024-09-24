@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/weeklyListFragment"
-        android:name="com.intsab.intsabwether.fragments.weeklylist.WeeklyListFragment"
+        android:name="com.intsab.intsabwether.fragments.weeklylist.WeatherWeeklyListFragment"
         android:label="Second Fragment"
         tools:layout="@layout/fragment_weekly_list">
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/weeklyListDetailFragment"
-        android:name="com.intsab.intsabwether.fragments.details.DetailsFragment"
+        android:name="com.intsab.intsabwether.fragments.details.WeatherDetailsByDayFragment"
         android:label="Day Details"
         tools:layout="@layout/fragment_details" />
 </navigation>
