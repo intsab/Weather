@@ -23,6 +23,5 @@ rootProject.name = "IntsabWether"
 include(":app")
 include(":code-data")
 include(":core-domain")
-include(":core-network")
 include(":dls")
 include(":common")

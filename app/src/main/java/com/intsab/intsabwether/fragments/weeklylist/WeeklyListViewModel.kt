@@ -14,8 +14,8 @@ class WeeklyListViewModel @Inject constructor(
     private val fullWeekWeatherUseCase: FullWeekWeatherUseCase,
 ) : ViewModel() {
 
-    private val _getFullWeekWeatherLiveData = MutableLiveData<FullWeekWeatherB>()
-    val getFullWeekWeatherLiveData: LiveData<FullWeekWeatherB> = _getFullWeekWeatherLiveData
+    private val _getFullWeekWeatherLiveData = MutableLiveData<List<FullWeekWeatherB>>()
+    val getFullWeekWeatherLiveData: LiveData<List<FullWeekWeatherB>> = _getFullWeekWeatherLiveData
 
     fun getFullWeekList(param: WeeklyListWeatherParams): WeeklyListViewModel {
         viewModelScope.launch {
