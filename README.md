@@ -41,7 +41,7 @@ The project follows **MVVM Clean Architecture** to ensure separation of concerns
 
 Defines the API endpoints used to fetch weather data.
 
-\```kotlin
+```kotlin
 interface WhetherService {
     @GET
     suspend fun getCurrentDayWeather(
@@ -53,13 +53,13 @@ interface WhetherService {
         @Url url: String
     ): FullWeekDaysResponse
 }
-\```
+```
 
 ### 2. **WhetherRepo (Repository)**
 
 Responsible for interacting with `WhetherService` and handling data-related operations.
 
-\```kotlin
+```kotlin
 class WhetherRepo @Inject constructor(
     private val services: WhetherService,
 ) {
@@ -81,13 +81,13 @@ class WhetherRepo @Inject constructor(
             }
         }
 }
-\```
+```
 
 ### 3. **FullWeekWeatherUseCase (Use Case)**
 
 Executes the business logic for fetching the weekly weather data from the repository.
 
-\```kotlin
+```kotlin
 fun FullWeekDaysResponse.toUiModel(): List<FullWeekWeatherB> {
     val list = arrayListOf<FullWeekWeatherB>()
     this.forecast?.forecastday?.forEach {
@@ -104,14 +104,14 @@ fun FullWeekDaysResponse.toUiModel(): List<FullWeekWeatherB> {
     }
     return list
 }
-\```
+```
 
 
 ### 4. **UI Model Conversion**
 
 Converts the API response to a UI-friendly model to be displayed in the app.
 
-\```kotlin
+```kotlin
 fun FullWeekDaysResponse.toUiModel(): List<FullWeekWeatherB> {
 val list = arrayListOf<FullWeekWeatherB>()
              this.forecast?.forecastday?.forEach {
@@ -128,7 +128,81 @@ val list = arrayListOf<FullWeekWeatherB>()
              }
              return list
          }
-\```
+```
+
+---
+## Caching Implementation in NetworkModule
+Caching is crucial for improving the performance and efficiency of network requests in mobile applications. In this implementation, we utilize OkHttp's caching capabilities to store responses and reduce the number of network calls, thereby enhancing user experience, especially in scenarios with limited connectivity.
+
+## Steps to Implement Caching
+
+1. **Create a Cache Directory:**
+   A cache directory is provided where cached HTTP responses will be stored. This directory is created in the application's cache directory.
+
+   ```kotlin
+   @Provides
+   @Singleton
+   fun provideCacheDir(application: Application): File {
+       return File(application.cacheDir, "http_cache")
+   }
+   ```
+
+2. **Define Cache Size:**
+   We define a cache size of 10 MB to limit the amount of data stored in the cache.
+
+   ```kotlin
+   @Provides
+   @Singleton
+   fun provideCache(cacheDir: File): Cache {
+       val cacheSize = 10 * 1024 * 1024L // 10 MB
+       return Cache(cacheDir, cacheSize)
+   }
+   ```
+
+3. **Configure OkHttpClient with Cache:**
+   The `OkHttpClient` is configured to utilize the cache. A cache interceptor is added to manage caching rules based on the HTTP request methods.
+
+   ```kotlin
+   @Provides
+   @Singleton
+   fun provideOkHttpClient(cache: Cache): OkHttpClient {
+       val cacheInterceptor = Interceptor { chain ->
+           var request = chain.request()
+           val response: Response = chain.proceed(request)
+
+           // Check if request is a GET request
+           if (request.method().equals("GET", ignoreCase = true)) {
+               val maxAge = 60 * 60 // Cache responses for 1 hour
+               response.newBuilder()
+                   .header("Cache-Control", "public, max-age=$maxAge")
+                   .build()
+           } else {
+               response
+           }
+       }
+
+       return OkHttpClient.Builder()
+           .cache(cache)
+           .addInterceptor(cacheInterceptor)
+           .build()
+   }
+   ```
+
+4. **Integrate Retrofit with OkHttpClient:**
+   The Retrofit instance is created using the configured `OkHttpClient` which now supports caching.
+
+   ```kotlin
+   @Provides
+   @Singleton
+   fun provideWhetherService(okHttpClient: OkHttpClient): WhetherService {
+       return Retrofit.Builder()
+           .baseUrl(Constants.BASE_URL)
+           .client(okHttpClient) // Attach OkHttpClient with caching to Retrofit
+           .addConverterFactory(GsonConverterFactory.create())
+           .build()
+           .create(WhetherService::class.java)
+   }
+   ```
 
 ---
 
@@ -137,7 +211,7 @@ val list = arrayListOf<FullWeekWeatherB>()
 - **Weekly Weather Forecast**: Provides a 7-day forecast for any city.
 - **Loading Animations**: Shimmer effect during data fetching.
 - **Responsive UI**: Optimized for various screen sizes and orientations.
-
+- **Offline Mode ()Caching**: Saved Network calls for one hour for the same data.
 ---
 
 ## Screenshots
@@ -156,19 +230,19 @@ val list = arrayListOf<FullWeekWeatherB>()
 
 1. **Clone the repository**:
 
-   \```bash
+   ```bash
    git clone https://github.com/intsab/Weather.git
-   \```
+   ```
 
 3. **Open in Android Studio**.
 
 4. **Setup API key**:
    - Add your weather API key in the `Constants` file.
-\```kotlin
+ ```kotlin
    object Constants {
        const val API_TOKEN = "your_api_key_here"
    }
-\```
+  ```
 
 5. **Build & Run** the project.
 
@@ -176,7 +250,6 @@ val list = arrayListOf<FullWeekWeatherB>()
 
 ## Future Enhancements
 - **Unit Testing**: Implement test cases for the ViewModels and Use Cases.
-- **Offline Mode**: Add caching for offline weather viewing.
 - **Localization**: Add support for multiple languages.
 
 ---
