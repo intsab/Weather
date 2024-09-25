@@ -41,7 +41,7 @@ The project follows **MVVM Clean Architecture** to ensure separation of concerns
 
 Defines the API endpoints used to fetch weather data.
 
-\```kotlin
+```kotlin
 interface WhetherService {
     @GET
     suspend fun getCurrentDayWeather(
@@ -53,13 +53,13 @@ interface WhetherService {
         @Url url: String
     ): FullWeekDaysResponse
 }
-\```
+```
 
 ### 2. **WhetherRepo (Repository)**
 
 Responsible for interacting with `WhetherService` and handling data-related operations.
 
-\```kotlin
+```kotlin
 class WhetherRepo @Inject constructor(
     private val services: WhetherService,
 ) {
@@ -81,13 +81,13 @@ class WhetherRepo @Inject constructor(
             }
         }
 }
-\```
+```
 
 ### 3. **FullWeekWeatherUseCase (Use Case)**
 
 Executes the business logic for fetching the weekly weather data from the repository.
 
-\```kotlin
+```kotlin
 fun FullWeekDaysResponse.toUiModel(): List<FullWeekWeatherB> {
     val list = arrayListOf<FullWeekWeatherB>()
     this.forecast?.forecastday?.forEach {
@@ -104,14 +104,14 @@ fun FullWeekDaysResponse.toUiModel(): List<FullWeekWeatherB> {
     }
     return list
 }
-\```
+```
 
 
 ### 4. **UI Model Conversion**
 
 Converts the API response to a UI-friendly model to be displayed in the app.
 
-\```kotlin
+```kotlin
 fun FullWeekDaysResponse.toUiModel(): List<FullWeekWeatherB> {
 val list = arrayListOf<FullWeekWeatherB>()
              this.forecast?.forecastday?.forEach {
@@ -128,7 +128,7 @@ val list = arrayListOf<FullWeekWeatherB>()
              }
              return list
          }
-\```
+```
 
 ---
 ## Caching Implementation in NetworkModule
@@ -230,19 +230,19 @@ Caching is crucial for improving the performance and efficiency of network reque
 
 1. **Clone the repository**:
 
-   \```bash
+   ```bash
    git clone https://github.com/intsab/Weather.git
-   \```
+   ```
 
 3. **Open in Android Studio**.
 
 4. **Setup API key**:
    - Add your weather API key in the `Constants` file.
-\```kotlin
+ ```kotlin
    object Constants {
        const val API_TOKEN = "your_api_key_here"
    }
-\```
+  ```
 
 5. **Build & Run** the project.
 
