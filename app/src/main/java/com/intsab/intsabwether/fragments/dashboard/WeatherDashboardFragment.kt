@@ -99,7 +99,7 @@ class WeatherDashboardFragment : BaseFragment() {
     private fun handleResponse(weather: CurrentDayWeatherB) {
         toggleShimmer(false)
         binding.temperature.text = weather.tempC
-        Glide.with(this).load(weather.weatherIcon).placeholder(R.drawable.ic_launcher_background)
+        Glide.with(this).load(weather.weatherIcon).placeholder(R.drawable.placeholder)
             .into(binding.weatherIcon)
 
         binding.dateAndTime.text = weather.lastUpdated

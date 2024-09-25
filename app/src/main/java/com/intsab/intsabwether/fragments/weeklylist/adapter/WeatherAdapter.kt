@@ -40,7 +40,7 @@ class WeatherAdapter(
     ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(weather: FullWeekWeatherB) {
-            Glide.with(context).load(weather.icon).placeholder(R.drawable.ic_launcher_background)
+            Glide.with(context).load(weather.icon).placeholder(R.drawable.placeholder)
                 .into(binding.dailyWeatherIcon)
 
             binding.weatherDescription.text = weather.condition
