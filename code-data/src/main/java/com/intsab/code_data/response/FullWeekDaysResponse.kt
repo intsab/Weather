@@ -9,12 +9,15 @@ import com.google.gson.annotations.SerializedName
 
 data class FullWeekDaysResponse(
     @SerializedName("current")
-    val current: Current,
+    val current: Current?,
     @SerializedName("forecast")
-    val forecast: Forecast,
+    val forecast: Forecast?,
     @SerializedName("location")
-    val location: Location
+    val location: Location?,
+    @SerializedName("isSuccess")
+    val isSuccess: Boolean = true
 )
+
 data class Forecast(
     @SerializedName("forecastday")
     val forecastday: List<Forecastday>
@@ -22,44 +25,44 @@ data class Forecast(
 
 data class AirQuality(
     @SerializedName("co")
-    val co: Double,
+    val co: String?,
     @SerializedName("gb-defra-index")
-    val gbDefraIndex: Int,
+    val gbDefraIndex: String?,
     @SerializedName("no2")
-    val no2: Double,
+    val no2: String?,
     @SerializedName("o3")
-    val o3: Double,
+    val o3: String?,
     @SerializedName("pm10")
-    val pm10: Double,
+    val pm10: String?,
     @SerializedName("pm2_5")
-    val pm25: Double,
+    val pm25: String?,
     @SerializedName("so2")
-    val so2: Double,
+    val so2: String?,
     @SerializedName("us-epa-index")
-    val usEpaIndex: Int
+    val usEpaIndex: String?
 )
 
 
 data class Forecastday(
     @SerializedName("astro")
-    val astro: Astro,
+    val astro: Astro?,
     @SerializedName("date")
-    val date: String,
+    val date: String?,
     @SerializedName("date_epoch")
-    val dateEpoch: Int,
+    val dateEpoch: String?,
     @SerializedName("day")
-    val day: Day,
+    val day: Day?,
     @SerializedName("hour")
-    val hour: List<Hour>
+    val hour: List<Hour>?
 )
 
 data class Astro(
     @SerializedName("is_moon_up")
-    val isMoonUp: Int,
+    val isMoonUp: String?,
     @SerializedName("is_sun_up")
-    val isSunUp: Int,
+    val isSunUp: String?,
     @SerializedName("moon_illumination")
-    val moonIllumination: Int,
+    val moonIllumination: String?,
     @SerializedName("moon_phase")
     val moonPhase: String,
     @SerializedName("moonrise")
@@ -76,137 +79,137 @@ data class Day(
     @SerializedName("air_quality")
     val airQuality: AirQualityX,
     @SerializedName("avghumidity")
-    val avghumidity: Int,
+    val avghumidity: String?,
     @SerializedName("avgtemp_c")
-    val avgtempC: Double,
+    val avgtempC: String?,
     @SerializedName("avgtemp_f")
-    val avgtempF: Double,
+    val avgtempF: String?,
     @SerializedName("avgvis_km")
-    val avgvisKm: Double,
+    val avgvisKm: String?,
     @SerializedName("avgvis_miles")
-    val avgvisMiles: Double,
+    val avgvisMiles: String?,
     @SerializedName("condition")
     val condition: Condition,
     @SerializedName("daily_chance_of_rain")
-    val dailyChanceOfRain: Int,
+    val dailyChanceOfRain: String?,
     @SerializedName("daily_chance_of_snow")
-    val dailyChanceOfSnow: Int,
+    val dailyChanceOfSnow: String?,
     @SerializedName("daily_will_it_rain")
-    val dailyWillItRain: Int,
+    val dailyWillItRain: String?,
     @SerializedName("daily_will_it_snow")
-    val dailyWillItSnow: Int,
+    val dailyWillItSnow: String?,
     @SerializedName("maxtemp_c")
-    val maxtempC: Double,
+    val maxtempC: String?,
     @SerializedName("maxtemp_f")
-    val maxtempF: Double,
+    val maxtempF: String?,
     @SerializedName("maxwind_kph")
-    val maxwindKph: Double,
+    val maxwindKph: String?,
     @SerializedName("maxwind_mph")
-    val maxwindMph: Double,
+    val maxwindMph: String?,
     @SerializedName("mintemp_c")
-    val mintempC: Double,
+    val mintempC: String?,
     @SerializedName("mintemp_f")
-    val mintempF: Double,
+    val mintempF: String?,
     @SerializedName("totalprecip_in")
-    val totalprecipIn: Double,
+    val totalprecipIn: String?,
     @SerializedName("totalprecip_mm")
-    val totalprecipMm: Double,
+    val totalprecipMm: String?,
     @SerializedName("totalsnow_cm")
-    val totalsnowCm: Double,
+    val totalsnowCm: String?,
     @SerializedName("uv")
-    val uv: Double
+    val uv: String?
 )
 
 data class Hour(
     @SerializedName("air_quality")
     val airQuality: AirQuality,
     @SerializedName("chance_of_rain")
-    val chanceOfRain: Int,
+    val chanceOfRain: String?,
     @SerializedName("chance_of_snow")
-    val chanceOfSnow: Int,
+    val chanceOfSnow: String?,
     @SerializedName("cloud")
-    val cloud: Int,
+    val cloud: String?,
     @SerializedName("condition")
     val condition: Condition,
     @SerializedName("dewpoint_c")
-    val dewpointC: Double,
+    val dewpointC: String?,
     @SerializedName("dewpoint_f")
-    val dewpointF: Double,
+    val dewpointF: String?,
     @SerializedName("feelslike_c")
-    val feelslikeC: Double,
+    val feelslikeC: String?,
     @SerializedName("feelslike_f")
-    val feelslikeF: Double,
+    val feelslikeF: String?,
     @SerializedName("gust_kph")
-    val gustKph: Double,
+    val gustKph: String?,
     @SerializedName("gust_mph")
-    val gustMph: Double,
+    val gustMph: String?,
     @SerializedName("heatindex_c")
-    val heatindexC: Double,
+    val heatindexC: String?,
     @SerializedName("heatindex_f")
-    val heatindexF: Double,
+    val heatindexF: String?,
     @SerializedName("humidity")
-    val humidity: Int,
+    val humidity: String?,
     @SerializedName("is_day")
-    val isDay: Int,
+    val isDay: String?,
     @SerializedName("precip_in")
-    val precipIn: Double,
+    val precipIn: String?,
     @SerializedName("precip_mm")
-    val precipMm: Double,
+    val precipMm: String?,
     @SerializedName("pressure_in")
-    val pressureIn: Double,
+    val pressureIn: String?,
     @SerializedName("pressure_mb")
-    val pressureMb: Double,
+    val pressureMb: String?,
     @SerializedName("snow_cm")
-    val snowCm: Double,
+    val snowCm: String?,
     @SerializedName("temp_c")
-    val tempC: Double,
+    val tempC: String?,
     @SerializedName("temp_f")
-    val tempF: Double,
+    val tempF: String?,
     @SerializedName("time")
     val time: String,
     @SerializedName("time_epoch")
-    val timeEpoch: Int,
+    val timeEpoch: String?,
     @SerializedName("uv")
-    val uv: Double,
+    val uv: String?,
     @SerializedName("vis_km")
-    val visKm: Double,
+    val visKm: String?,
     @SerializedName("vis_miles")
-    val visMiles: Double,
+    val visMiles: String?,
     @SerializedName("will_it_rain")
-    val willItRain: Int,
+    val willItRain: String?,
     @SerializedName("will_it_snow")
-    val willItSnow: Int,
+    val willItSnow: String?,
     @SerializedName("wind_degree")
-    val windDegree: Int,
+    val windDegree: String?,
     @SerializedName("wind_dir")
     val windDir: String,
     @SerializedName("wind_kph")
-    val windKph: Double,
+    val windKph: String?,
     @SerializedName("wind_mph")
-    val windMph: Double,
+    val windMph: String?,
     @SerializedName("windchill_c")
-    val windchillC: Double,
+    val windchillC: String?,
     @SerializedName("windchill_f")
-    val windchillF: Double
+    val windchillF: String?
 )
 
 data class AirQualityX(
     @SerializedName("aqi_data")
     val aqiData: String,
     @SerializedName("co")
-    val co: Double,
+    val co: String?,
     @SerializedName("gb-defra-index")
-    val gbDefraIndex: Int,
+    val gbDefraIndex: String?,
     @SerializedName("no2")
-    val no2: Double,
+    val no2: String?,
     @SerializedName("o3")
-    val o3: Double,
+    val o3: String?,
     @SerializedName("pm10")
-    val pm10: Double,
+    val pm10: String?,
     @SerializedName("pm2_5")
-    val pm25: Double,
+    val pm25: String?,
     @SerializedName("so2")
-    val so2: Double,
+    val so2: String?,
     @SerializedName("us-epa-index")
-    val usEpaIndex: Int
+    val usEpaIndex: String?
 )

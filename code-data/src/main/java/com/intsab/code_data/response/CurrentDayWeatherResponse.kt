@@ -1,4 +1,5 @@
 package com.intsab.code_data.response
+
 import com.google.gson.annotations.SerializedName
 
 
@@ -8,96 +9,98 @@ import com.google.gson.annotations.SerializedName
  */
 data class CurrentDayWeatherResponse(
     @SerializedName("current")
-    val current: Current,
+    val current: Current?,
     @SerializedName("location")
-    val location: Location
+    val location: Location?,
+    @SerializedName("isSuccess")
+    val isSuccess: Boolean = true
 )
 
 data class Current(
     @SerializedName("cloud")
-    val cloud: Int,
+    val cloud: String?,
     @SerializedName("condition")
     val condition: Condition,
     @SerializedName("dewpoint_c")
     val dewpointC: Double,
     @SerializedName("dewpoint_f")
-    val dewpointF: Double,
+    val dewpointF: String?,
     @SerializedName("feelslike_c")
-    val feelslikeC: Double,
+    val feelslikeC: String?,
     @SerializedName("feelslike_f")
-    val feelslikeF: Double,
+    val feelslikeF: String?,
     @SerializedName("gust_kph")
-    val gustKph: Double,
+    val gustKph: String?,
     @SerializedName("gust_mph")
-    val gustMph: Double,
+    val gustMph: String?,
     @SerializedName("heatindex_c")
-    val heatindexC: Double,
+    val heatindexC: String?,
     @SerializedName("heatindex_f")
-    val heatindexF: Double,
+    val heatindexF: String?,
     @SerializedName("humidity")
-    val humidity: Int,
+    val humidity: String?,
     @SerializedName("is_day")
-    val isDay: Int,
+    val isDay: String?,
     @SerializedName("last_updated")
-    val lastUpdated: String,
+    val lastUpdated: String?,
     @SerializedName("last_updated_epoch")
-    val lastUpdatedEpoch: Int,
+    val lastUpdatedEpoch: String?,
     @SerializedName("precip_in")
-    val precipIn: Double,
+    val precipIn: String?,
     @SerializedName("precip_mm")
-    val precipMm: Double,
+    val precipMm: String?,
     @SerializedName("pressure_in")
-    val pressureIn: Double,
+    val pressureIn: String?,
     @SerializedName("pressure_mb")
-    val pressureMb: Double,
+    val pressureMb: String?,
     @SerializedName("temp_c")
-    val tempC: Double,
+    val tempC: String?,
     @SerializedName("temp_f")
-    val tempF: Double,
+    val tempF: String?,
     @SerializedName("uv")
-    val uv: Double,
+    val uv: String?,
     @SerializedName("vis_km")
-    val visKm: Double,
+    val visKm: String?,
     @SerializedName("vis_miles")
-    val visMiles: Double,
+    val visMiles: String?,
     @SerializedName("wind_degree")
-    val windDegree: Int,
+    val windDegree: String?,
     @SerializedName("wind_dir")
-    val windDir: String,
+    val windDir: String?,
     @SerializedName("wind_kph")
-    val windKph: Double,
+    val windKph: String?,
     @SerializedName("wind_mph")
-    val windMph: Double,
+    val windMph: String?,
     @SerializedName("windchill_c")
-    val windchillC: Double,
+    val windchillC: String?,
     @SerializedName("windchill_f")
-    val windchillF: Double
+    val windchillF: String?
 )
 
 data class Location(
     @SerializedName("country")
-    val country: String,
+    val country: String?,
     @SerializedName("lat")
-    val lat: Double,
+    val lat: String?,
     @SerializedName("localtime")
-    val localtime: String,
+    val localtime: String?,
     @SerializedName("localtime_epoch")
     val localtimeEpoch: Int,
     @SerializedName("lon")
-    val lon: Double,
+    val lon: String?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("region")
-    val region: String,
+    val region: String?,
     @SerializedName("tz_id")
-    val tzId: String
+    val tzId: String?
 )
 
 data class Condition(
     @SerializedName("code")
-    val code: Int,
+    val code: String?,
     @SerializedName("icon")
-    val icon: String,
+    val icon: String?,
     @SerializedName("text")
-    val text: String
+    val text: String?
 )

@@ -1,6 +1,7 @@
 package com.intsab.core_domain.dataholders
 
 import com.intsab.code_data.response.CurrentDayWeatherResponse
+import com.intsab.common.CommonHelper.toNullEmpty
 
 /**
  * Created by intsabhaider
@@ -8,47 +9,50 @@ import com.intsab.code_data.response.CurrentDayWeatherResponse
  */
 
 data class CurrentDayWeatherB(
-    val cloud: Int,
-    val feelslikeC: Double,
-    val feelslikeF: Double,
-    val humidity: Int,
-    val isDay: Int,
+    val isSuccess: Boolean,
+    val cloud: String,
+    val feelslikeC: String,
+    val feelslikeF: String,
+    val humidity: String,
+    val isDay: String,
     val lastUpdated: String,
-    val tempC: Double,
-    val tempF: Double,
-    val windKph: Double,
-    val windMph: Double,
+    val tempC: String,
+    val tempF: String,
+    val windKph: String,
+    val windMph: String,
     val country: String,
-    val lat: Double,
+    val lat: String,
     val localtime: String,
-    val lon: Double,
-    val name: String,
+    val lon: String,
+    val locationName: String,
     val region: String,
-    val code: Int,
-    val icon: String,
-    val text: String
+    val code: String,
+    val weatherIcon: String,
+    val shortDescription: String
 )
 
 fun CurrentDayWeatherResponse.toUiModel(): CurrentDayWeatherB {
     return CurrentDayWeatherB(
-        cloud = this.current.cloud,
-        feelslikeC = this.current.feelslikeC,
-        feelslikeF = this.current.feelslikeF,
-        humidity = this.current.humidity,
-        isDay = this.current.isDay,
-        lastUpdated = this.current.lastUpdated,
-        tempC = this.current.tempC,
-        tempF = this.current.tempF,
-        windKph = this.current.windKph,
-        windMph = this.current.windMph,
-        country = this.location.country,
-        lat = this.location.lat,
-        localtime = this.location.localtime,
-        lon = this.location.lon,
-        name = this.location.name,
-        region = this.location.region,
-        code = this.current.condition.code,
-        icon = this.current.condition.icon,
-        text = this.current.condition.text
+        isSuccess = this.current != null,
+        cloud = this.current?.cloud.toNullEmpty(),
+        feelslikeC = this.current?.feelslikeC.toNullEmpty(),
+        feelslikeF = this.current?.feelslikeF.toNullEmpty(),
+        humidity = this.current?.humidity.toNullEmpty(),
+        isDay = this.current?.isDay.toNullEmpty(),
+        lastUpdated = this.current?.lastUpdated.toNullEmpty(),
+        tempC = this.current?.tempC.toNullEmpty(),
+        tempF = this.current?.tempF.toNullEmpty(),
+        windKph = this.current?.windKph.toNullEmpty(),
+        windMph = this.current?.windMph.toNullEmpty(),
+        country = this.location?.country.toNullEmpty(),
+        lat = this.location?.lat.toNullEmpty(),
+        localtime = this.location?.localtime.toNullEmpty(),
+        lon = this.location?.lon.toNullEmpty(),
+        locationName = this.location?.name.toNullEmpty(),
+        region = this.location?.region.toNullEmpty(),
+        code = this.current?.condition?.code.toNullEmpty(),
+        weatherIcon = this.current?.condition?.icon.toNullEmpty(),
+        shortDescription = this.current?.condition?.text.toNullEmpty()
     )
 }
+

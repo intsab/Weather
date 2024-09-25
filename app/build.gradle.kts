@@ -69,6 +69,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.fragment.ktx)
+    implementation ("com.facebook.shimmer:shimmer:0.5.0")
+
     implementation(project(":core-domain"))
     implementation(project(":common"))
     implementation("com.squareup.retrofit2:retrofit:2.9.0")

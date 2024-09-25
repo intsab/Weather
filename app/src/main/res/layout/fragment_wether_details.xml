@@ -1,167 +1,186 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg">
 
-    <ImageView
-        android:id="@+id/bg"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainLo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@drawable/bg"
+        tools:visibility="gone">
 
-    <EditText
-        android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16sp"
-        android:padding="8dp"
-        android:text="Jakarta"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-    <!-- Greeting -->
-    <TextView
-        android:id="@+id/greeting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Good Morning"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/location" />
-
-    <!-- Weather Icon -->
-    <ImageView
-        android:id="@+id/weather_icon"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/greeting" />
-
-    <!-- Temperature -->
-    <TextView
-        android:id="@+id/temperature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="21°C"
-        android:textColor="@android:color/white"
-        android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/weather_icon" />
-
-    <!-- Weather Condition -->
-    <TextView
-        android:id="@+id/weather_condition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="THUNDERSTORM"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/temperature" />
-
-    <!-- Date and Time -->
-    <TextView
-        android:id="@+id/date_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Friday 16 • 09:41 AM"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/weather_condition" />
-
-    <!-- Next Days Button -->
-    <TextView
-        android:id="@+id/next_days"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Next days >"
-        android:textColor="@android:color/holo_purple"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/date_time" />
-
-    <!-- Sunrise/Sunset Info -->
-    <LinearLayout
-        android:id="@+id/sunrise_sunset_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/next_days">
-
-        <!-- Sunrise Time -->
-        <TextView
-            android:id="@+id/sunrise"
+        <EditText
+            android:id="@+id/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sunrise\n5:34 AM"
+            android:layout_marginTop="16sp"
+            android:padding="8dp"
+            android:text="Jakarta"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Spacer between sunrise and sunset -->
-        <Space
-            android:layout_width="32dp"
-            android:layout_height="wrap_content" />
-
-        <!-- Sunset Time -->
+        <!-- Greeting -->
         <TextView
-            android:id="@+id/sunset"
+            android:id="@+id/greeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sunset\n6:34 AM"
+            android:text="Good Morning"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/location" />
 
-    <!-- Additional Information (Air Quality, Humidity, etc.) -->
-    <LinearLayout
-        android:id="@+id/additional_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16sp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sunrise_sunset_info">
+        <!-- Weather Icon -->
+        <ImageView
+            android:id="@+id/weather_icon"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/greeting" />
 
-
+        <!-- Temperature -->
         <TextView
-            android:id="@+id/humidity"
+            android:id="@+id/temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="Humidity\n87%"
+            android:text="21°C"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="48sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/weather_icon" />
 
-
+        <!-- Weather Condition -->
         <TextView
-            android:id="@+id/light_rain"
+            android:id="@+id/weather_condition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Light Rain\n34%"
+            android:text="THUNDERSTORM"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/temperature" />
+
+        <!-- Date and Time -->
+        <TextView
+            android:id="@+id/date_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Friday 16 • 09:41 AM"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/weather_condition" />
+
+        <!-- Next Days Button -->
+        <TextView
+            android:id="@+id/next_days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Next days >"
+            android:textColor="@android:color/holo_purple"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/date_time" />
+
+        <!-- Sunrise/Sunset Info -->
+        <LinearLayout
+            android:id="@+id/sunrise_sunset_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/next_days">
+
+            <!-- Sunrise Time -->
+            <TextView
+                android:id="@+id/sunrise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sunrise\n5:34 AM"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- Spacer between sunrise and sunset -->
+            <Space
+                android:layout_width="32dp"
+                android:layout_height="wrap_content" />
+
+            <!-- Sunset Time -->
+            <TextView
+                android:id="@+id/sunset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sunset\n6:34 AM"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Additional Information (Air Quality, Humidity, etc.) -->
+        <LinearLayout
+            android:id="@+id/additional_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16sp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sunrise_sunset_info">
+
+
+            <TextView
+                android:id="@+id/humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Humidity\n87%"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/light_rain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Light Rain\n34%"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/shimmer_layout"
+        layout="@layout/fragment_wether_details_shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import com.intsab.code_data.di.NetworkModule
 import com.intsab.intsabwether.MainActivity
 import com.intsab.intsabwether.WeatherApp
 import com.intsab.intsabwether.fragments.dashboard.WeatherDashboardFragment
+import com.intsab.intsabwether.fragments.weeklylist.WeatherWeeklyListFragment
 import dagger.Binds
 import dagger.BindsInstance
 import dagger.Component
@@ -31,6 +32,7 @@ interface AppComponent : AndroidInjector<WeatherApp> {
     fun inject(activity: MainActivity)
     fun inject(app: AppComponent)
     fun inject(dashboardFragment: WeatherDashboardFragment)
+    fun inject(weeklyList: WeatherWeeklyListFragment)
 
     @Component.Factory
     interface Factory {
@@ -68,6 +70,8 @@ abstract class FragmentBuilderModule {
 
     @ContributesAndroidInjector
     abstract fun bindWeatherDashboardFragment(): WeatherDashboardFragment
+    @ContributesAndroidInjector
+    abstract fun bindWeatherListFragment(): WeatherWeeklyListFragment
 }
 
 @Subcomponent

@@ -1,14 +1,16 @@
 package com.intsab.intsabwether.fragments.dashboard
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.intsab.core_domain.dataholders.CurrentDayWeatherB
 import com.intsab.core_domain.params.CurrentDayWeatherParams
+import com.intsab.intsabwether.R
 import com.intsab.intsabwether.databinding.FragmentWetherDetailsBinding
 import com.intsab.intsabwether.di.DashboardViewModelFactory
 import com.intsab.intsabwether.fragments.BaseFragment
@@ -37,16 +39,52 @@ class WeatherDashboardFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupViewListeners()
+        setupObservers()
+        getDashboardData()
+    }
 
+    private fun setupViewListeners() {
+        binding.nextDays.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboard_to_weekly_list)
+        }
+    }
+
+    private fun getDashboardData() {
+        toggleShimmer(true)
+        val params = CurrentDayWeatherParams(city = "New York")
+        viewModel.getCurrentWeather(params)
+    }
+
+    private fun setupObservers() {
         viewModel.getCurrentWeatherLiveData.observe(
             viewLifecycleOwner,
             Observer { weather ->
-                Log.d("", "onViewCreated: ")
+                handleResponse(weather)
+            })
+        viewModel.error.observe(
+            viewLifecycleOwner,
+            Observer { reason ->
+                Toast.makeText(requireContext(), reason, Toast.LENGTH_SHORT).show()
+
             })
 
-        // Call the API to get current weather
-        val params = CurrentDayWeatherParams(city = "New York")  // Example parameter
-        viewModel.getCurrentWeather(params)
+    }
 
+    private fun handleResponse(weather: CurrentDayWeatherB) {
+        toggleShimmer(false)
+        binding.dateTime.text = weather.lastUpdated
+        binding.temperature.text = weather.tempC.toString()
+        binding.humidity.text = weather.humidity.toString()
+    }
+
+    private fun toggleShimmer(show: Boolean) {
+        if (show) {
+            binding.mainLo.visibility = View.GONE
+            binding.shimmerLayout.root.visibility = View.VISIBLE
+        } else {
+            binding.mainLo.visibility = View.VISIBLE
+            binding.shimmerLayout.root.visibility = View.GONE
+        }
     }
 }

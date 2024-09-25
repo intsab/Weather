@@ -1,6 +1,7 @@
 package com.intsab.core_domain.dataholders
 
 import com.intsab.code_data.response.FullWeekDaysResponse
+import com.intsab.common.CommonHelper.toNullEmpty
 
 /**
  * Created by intsabhaider
@@ -17,15 +18,15 @@ data class FullWeekWeatherB(
 
 fun FullWeekDaysResponse.toUiModel(): List<FullWeekWeatherB> {
     val list = arrayListOf<FullWeekWeatherB>()
-    this.forecast.forecastday.forEach {
+    this.forecast?.forecastday?.forEach {
         list.add(
             FullWeekWeatherB(
-                date = it.date,
-                temperature = it.day.avgtempC.toString(),
-                sunRise = it.astro.sunrise,
-                sunSet = it.astro.sunset,
-                condition = it.day.condition.text,
-                icon = it.day.condition.icon
+                date = it.date.toNullEmpty(),
+                temperature = it.day?.avgtempC.toNullEmpty(),
+                sunRise = it.astro?.sunrise.toNullEmpty(),
+                sunSet = it.astro?.sunset.toNullEmpty(),
+                condition = it.day?.condition?.text.toNullEmpty(),
+                icon = it.day?.condition?.icon.toNullEmpty()
             )
         )
     }
