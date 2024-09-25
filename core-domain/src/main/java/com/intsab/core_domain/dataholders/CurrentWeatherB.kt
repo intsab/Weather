@@ -40,8 +40,8 @@ fun CurrentDayWeatherResponse.toUiModel(): CurrentDayWeatherB {
         humidity = this.current?.humidity.toNullEmpty(),
         isDay = this.current?.isDay.toNullEmpty(),
         lastUpdated = this.current?.lastUpdated.toNullEmpty(),
-        tempC = this.current?.tempC.toNullEmpty(),
-        tempF = this.current?.tempF.toNullEmpty(),
+        tempC = this.current?.tempC.toNullEmpty()+ " \u2103",
+        tempF = this.current?.tempF.toNullEmpty()+ " \u2109" ,
         windKph = this.current?.windKph.toNullEmpty(),
         windMph = this.current?.windMph.toNullEmpty(),
         country = this.location?.country.toNullEmpty(),
@@ -51,7 +51,7 @@ fun CurrentDayWeatherResponse.toUiModel(): CurrentDayWeatherB {
         locationName = this.location?.name.toNullEmpty(),
         region = this.location?.region.toNullEmpty(),
         code = this.current?.condition?.code.toNullEmpty(),
-        weatherIcon = this.current?.condition?.icon.toNullEmpty(),
+        weatherIcon = "https:"+this.current?.condition?.icon.toNullEmpty(),
         shortDescription = this.current?.condition?.text.toNullEmpty()
     )
 }

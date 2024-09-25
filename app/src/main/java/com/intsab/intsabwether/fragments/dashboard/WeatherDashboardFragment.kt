@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.intsab.core_domain.dataholders.CurrentDayWeatherB
 import com.intsab.core_domain.params.CurrentDayWeatherParams
 import com.intsab.intsabwether.R
@@ -73,9 +74,15 @@ class WeatherDashboardFragment : BaseFragment() {
 
     private fun handleResponse(weather: CurrentDayWeatherB) {
         toggleShimmer(false)
+        Glide
+            .with(this)
+            .load(weather.weatherIcon)
+            .placeholder(R.drawable.ic_launcher_background)
+            .into(binding.weatherIcon)
+
         binding.dateTime.text = weather.lastUpdated
-        binding.temperature.text = weather.tempC.toString()
-        binding.humidity.text = weather.humidity.toString()
+        binding.temperature.text = weather.tempC
+        binding.humidity.text = weather.humidity
     }
 
     private fun toggleShimmer(show: Boolean) {

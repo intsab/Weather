@@ -70,6 +70,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.fragment.ktx)
     implementation ("com.facebook.shimmer:shimmer:0.5.0")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
 
     implementation(project(":core-domain"))
     implementation(project(":common"))

@@ -22,11 +22,11 @@ fun FullWeekDaysResponse.toUiModel(): List<FullWeekWeatherB> {
         list.add(
             FullWeekWeatherB(
                 date = it.date.toNullEmpty(),
-                temperature = it.day?.avgtempC.toNullEmpty(),
+                temperature = it.day?.avgtempC.toNullEmpty() + " \u2103",
                 sunRise = it.astro?.sunrise.toNullEmpty(),
                 sunSet = it.astro?.sunset.toNullEmpty(),
                 condition = it.day?.condition?.text.toNullEmpty(),
-                icon = it.day?.condition?.icon.toNullEmpty()
+                icon = "https:" + it.day?.condition?.icon.toNullEmpty()
             )
         )
     }
