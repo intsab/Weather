@@ -253,8 +253,12 @@ Caching is crucial for improving the performance and efficiency of network reque
 
 ---
 
+## Unit Tests
+Unit tests for utility classes are also implemented with 100% coverage.
+
+---
+
 ## Future Enhancements
-- **Unit Testing**: Implement test cases for the ViewModels and Use Cases.
 - **Localization**: Add support for multiple languages.
 
 ---
