@@ -155,13 +155,14 @@ val list = arrayListOf<FullWeekWeatherB>()
 ## Installation & Setup
 
 1. **Clone the repository**:
+
    \```bash
-   git clone https://github.com/intsab/WeatherApp.git
+   git clone https://github.com/intsab/Weather.git
    \```
 
-2. **Open in Android Studio**.
+3. **Open in Android Studio**.
 
-3. **Setup API key**:
+4. **Setup API key**:
    - Add your weather API key in the `Constants` file.
 \```kotlin
    object Constants {
@@ -169,7 +170,7 @@ val list = arrayListOf<FullWeekWeatherB>()
    }
 \```
 
-4. **Build & Run** the project.
+5. **Build & Run** the project.
 
 ---
 
