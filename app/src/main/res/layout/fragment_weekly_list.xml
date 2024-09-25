@@ -3,27 +3,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    android:background="@drawable/bg_list"
+    android:paddingTop="32dp">
 
-    <TextView
-        android:id="@+id/city"
+    <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="City"
+        android:orientation="horizontal">
 
-        android:textColor="@color/white"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="16dp"
+            android:text="City"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="42dp"
+            android:layout_height="42dp" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/weekly_forecast_list"
+        android:id="@+id/rvWeekDays"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city"
+        app:layout_constraintTop_toBottomOf="@+id/header"
         tools:itemCount="7"
         tools:listitem="@layout/week_day_item_layout" />
+
+    <include
+        android:id="@+id/shimmer_layout"
+        layout="@layout/week_day_item_shimmer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header" />
 </androidx.constraintlayout.widget.ConstraintLayout>

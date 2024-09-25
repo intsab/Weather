@@ -122,4 +122,9 @@ class WeatherDashboardFragment : BaseFragment() {
             binding.shimmerLayout.root.visibility = View.GONE
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        setInitialData()
+    }
 }

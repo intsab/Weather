@@ -2,7 +2,6 @@ package com.intsab.code_data.repo
 
 import com.intsab.code_data.response.CurrentDayWeatherResponse
 import com.intsab.code_data.response.FullWeekDaysResponse
-import com.intsab.code_data.response.WeatherDetailsByDayResponse
 import com.intsab.code_data.services.WhetherService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -33,12 +32,4 @@ class WhetherRepo @Inject constructor(
             }
         }
 
-    suspend fun getWeatherDetailsByDay(url: String): WeatherDetailsByDayResponse =
-        withContext(Dispatchers.IO) {
-            try {
-                services.getWeatherDetailsByDay(url)
-            } catch (exp: Exception) {
-                throw Exception("getWeatherDetailsByDay")
-            }
-        }
 }
