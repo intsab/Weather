@@ -142,9 +142,13 @@ val list = arrayListOf<FullWeekWeatherB>()
 
 ## Screenshots
 Add screenshots here showing the app's main screens:
-1. **Home Screen**
-2. **Weekly Forecast**
-3. **Shimmer Loading Effect**
+1. **Home Screen** ![Screenshot_20240925_234248](https://github.com/user-attachments/assets/1fcb06a1-8216-4970-87d5-1b346276ec3c)
+
+2. **Weekly Forecast** ![Screenshot_20240925_234305](https://github.com/user-attachments/assets/55941ccd-f90b-4cd4-8c32-3eefe4809670)
+
+3. **Shimmer Loading Effect** ![Screenshot_20240925_234318](https://github.com/user-attachments/assets/d90c33db-9944-4e9e-9dc9-69354b164098)
+
+   
 
 ---
 
