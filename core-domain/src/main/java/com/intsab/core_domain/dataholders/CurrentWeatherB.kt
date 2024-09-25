@@ -26,7 +26,7 @@ data class CurrentDayWeatherB(
     val lon: String,
     val locationName: String,
     val region: String,
-    val code: String,
+    val heatIndex: String,
     val weatherIcon: String,
     val shortDescription: String
 )
@@ -34,15 +34,15 @@ data class CurrentDayWeatherB(
 fun CurrentDayWeatherResponse.toUiModel(): CurrentDayWeatherB {
     return CurrentDayWeatherB(
         isSuccess = this.current != null,
-        cloud = this.current?.cloud.toNullEmpty(),
-        feelslikeC = this.current?.feelslikeC.toNullEmpty(),
-        feelslikeF = this.current?.feelslikeF.toNullEmpty(),
-        humidity = this.current?.humidity.toNullEmpty(),
+        cloud = this.current?.cloud.toNullEmpty().plus("%"),
+        feelslikeC = this.current?.feelslikeC.toNullEmpty()+ " \u2103",
+        feelslikeF = this.current?.feelslikeF.toNullEmpty()+ " \u2109",
+        humidity = this.current?.humidity.toNullEmpty().plus("%"),
         isDay = this.current?.isDay.toNullEmpty(),
         lastUpdated = this.current?.lastUpdated.toNullEmpty(),
-        tempC = this.current?.tempC.toNullEmpty()+ " \u2103",
-        tempF = this.current?.tempF.toNullEmpty()+ " \u2109" ,
-        windKph = this.current?.windKph.toNullEmpty(),
+        tempC = this.current?.tempC.toNullEmpty() + " \u2103",
+        tempF = this.current?.tempF.toNullEmpty() + " \u2109",
+        windKph = this.current?.windKph.toNullEmpty().plus(" KPH"),
         windMph = this.current?.windMph.toNullEmpty(),
         country = this.location?.country.toNullEmpty(),
         lat = this.location?.lat.toNullEmpty(),
@@ -50,8 +50,8 @@ fun CurrentDayWeatherResponse.toUiModel(): CurrentDayWeatherB {
         lon = this.location?.lon.toNullEmpty(),
         locationName = this.location?.name.toNullEmpty(),
         region = this.location?.region.toNullEmpty(),
-        code = this.current?.condition?.code.toNullEmpty(),
-        weatherIcon = "https:"+this.current?.condition?.icon.toNullEmpty(),
+        heatIndex = this.current?.heatindexC + " \u2103",
+        weatherIcon = "https:" + this.current?.condition?.icon.toNullEmpty(),
         shortDescription = this.current?.condition?.text.toNullEmpty()
     )
 }

@@ -12,9 +12,12 @@ import com.bumptech.glide.Glide
 import com.intsab.core_domain.dataholders.CurrentDayWeatherB
 import com.intsab.core_domain.params.CurrentDayWeatherParams
 import com.intsab.intsabwether.R
+import com.intsab.intsabwether.bottomsheets.ChangeCityBottomSheet
 import com.intsab.intsabwether.databinding.FragmentWetherDetailsBinding
 import com.intsab.intsabwether.di.DashboardViewModelFactory
 import com.intsab.intsabwether.fragments.BaseFragment
+import com.intsab.intsabwether.utils.GreetingsHelper
+import com.intsab.intsabwether.utils.SharedPrefUtils
 import javax.inject.Inject
 
 
@@ -22,6 +25,7 @@ class WeatherDashboardFragment : BaseFragment() {
 
     private var _binding: FragmentWetherDetailsBinding? = null
     private val binding get() = _binding!!
+    private var cityName = ""
 
     @Inject
     lateinit var viewModelFactory: DashboardViewModelFactory
@@ -40,49 +44,73 @@ class WeatherDashboardFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setInitialData()
         setupViewListeners()
         setupObservers()
         getDashboardData()
+    }
+
+    private fun setInitialData() {
+        cityName = SharedPrefUtils.getCityFromPreferences(requireContext())
+        binding.location.text = cityName
+        binding.greeting.text = GreetingsHelper().getGreeting(System.currentTimeMillis())
+
     }
 
     private fun setupViewListeners() {
         binding.nextDays.setOnClickListener {
             findNavController().navigate(R.id.action_dashboard_to_weekly_list)
         }
+        binding.location.setOnClickListener {
+            val bottomSheet = ChangeCityBottomSheet().apply {
+                setOnCitySavedListener { city ->
+                    saveCityToSharedPrefs(city)
+                    getDashboardData()
+                }
+            }
+            bottomSheet.show(childFragmentManager, ChangeCityBottomSheet.TAG)
+        }
+    }
+
+    private fun saveCityToSharedPrefs(city: String) {
+        SharedPrefUtils.saveCityToPreferences(requireContext(), city)
     }
 
     private fun getDashboardData() {
         toggleShimmer(true)
-        val params = CurrentDayWeatherParams(city = "New York")
+        cityName = SharedPrefUtils.getCityFromPreferences(requireContext())
+        val params =
+            CurrentDayWeatherParams(city = cityName)
+        binding.location.text = cityName
         viewModel.getCurrentWeather(params)
     }
 
     private fun setupObservers() {
-        viewModel.getCurrentWeatherLiveData.observe(
-            viewLifecycleOwner,
-            Observer { weather ->
-                handleResponse(weather)
-            })
-        viewModel.error.observe(
-            viewLifecycleOwner,
-            Observer { reason ->
-                Toast.makeText(requireContext(), reason, Toast.LENGTH_SHORT).show()
+        viewModel.getCurrentWeatherLiveData.observe(viewLifecycleOwner, Observer { weather ->
+            handleResponse(weather)
+        })
+        viewModel.error.observe(viewLifecycleOwner, Observer { reason ->
+            Toast.makeText(requireContext(), reason, Toast.LENGTH_SHORT).show()
 
-            })
+        })
 
     }
 
     private fun handleResponse(weather: CurrentDayWeatherB) {
         toggleShimmer(false)
-        Glide
-            .with(this)
-            .load(weather.weatherIcon)
-            .placeholder(R.drawable.ic_launcher_background)
+        binding.temperature.text = weather.tempC
+        Glide.with(this).load(weather.weatherIcon).placeholder(R.drawable.ic_launcher_background)
             .into(binding.weatherIcon)
 
-        binding.dateTime.text = weather.lastUpdated
-        binding.temperature.text = weather.tempC
-        binding.humidity.text = weather.humidity
+        binding.dateAndTime.text = weather.lastUpdated
+        binding.weatherCondition.text = weather.shortDescription
+        binding.feelsLike.text = "Feels Like " + weather.feelslikeC
+
+        binding.windSpeed.text = "Wind Speed \n" + weather.windKph
+        binding.heatIndex.text = "Heat Index \n" + weather.heatIndex
+
+        binding.humidity.text = "Humidity\n" + weather.humidity
+        binding.tvClouds.text = "Clouds\n" + weather.cloud
     }
 
     private fun toggleShimmer(show: Boolean) {
