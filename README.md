@@ -248,6 +248,11 @@ Caching is crucial for improving the performance and efficiency of network reque
 
 ---
 
+## APK File
+[Download APK](https://github.com/intsab/Weather/blob/master/IntsabWether.apk) and Run. Ensure you change settings to install from an unknown source in Android settings.
+
+---
+
 ## Future Enhancements
 - **Unit Testing**: Implement test cases for the ViewModels and Use Cases.
 - **Localization**: Add support for multiple languages.
