@@ -29,14 +29,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Jakarta" />
+
         <ImageView
-            app:layout_constraintTop_toTopOf="@+id/location"
-            app:layout_constraintStart_toEndOf="@+id/location"
-            app:layout_constraintBottom_toBottomOf="@+id/location"
             android:layout_width="22dp"
-            android:layout_marginStart="8dp"
             android:layout_height="22dp"
-            android:src="@android:drawable/ic_menu_edit"/>
+            android:layout_marginStart="8dp"
+            android:src="@android:drawable/ic_menu_edit"
+            app:layout_constraintBottom_toBottomOf="@+id/location"
+            app:layout_constraintStart_toEndOf="@+id/location"
+            app:layout_constraintTop_toTopOf="@+id/location" />
 
         <!-- Greeting -->
         <TextView
@@ -205,5 +206,17 @@
         android:visibility="gone"
         tools:visibility="gone" />
 
+    <TextView
+        android:id="@+id/networkError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/bg_edit_text"
+        android:gravity="center"
+        android:text="Sorry, We Unable to load the data! \n Can you check your internet and retry later.\n\n Or Try Different Filter"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

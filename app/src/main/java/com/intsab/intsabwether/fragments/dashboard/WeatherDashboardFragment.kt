@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -90,8 +89,8 @@ class WeatherDashboardFragment : BaseFragment() {
             handleResponse(weather)
         })
         viewModel.error.observe(viewLifecycleOwner, Observer { reason ->
-            Toast.makeText(requireContext(), reason, Toast.LENGTH_SHORT).show()
-
+            toggleShimmer(false)
+            binding.networkError.visibility = View.VISIBLE
         })
 
     }
@@ -114,6 +113,7 @@ class WeatherDashboardFragment : BaseFragment() {
     }
 
     private fun toggleShimmer(show: Boolean) {
+        binding.networkError.visibility = View.GONE
         if (show) {
             binding.mainLo.visibility = View.GONE
             binding.shimmerLayout.root.visibility = View.VISIBLE

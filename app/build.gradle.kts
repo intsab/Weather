@@ -85,11 +85,28 @@ dependencies {
     kapt("com.google.dagger:dagger-compiler:2.46")
     kapt("com.google.dagger:dagger-android-processor:2.46")
 
+
     testImplementation(libs.junit)
+
+    testImplementation("org.mockito:mockito-core:5.0.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.0.0") // Keep for Kotlin support
+    testImplementation("org.robolectric:robolectric:4.9.1") // Keep if using Robolectric
+
+    // Android Testing
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.fragment:fragment-testing:1.5.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    // Debugging
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // AndroidX Libraries
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.core:core-ktx:1.12.0")
+
 }

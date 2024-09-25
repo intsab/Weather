@@ -51,4 +51,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />
+
+    <TextView
+        android:visibility="gone"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        android:id="@+id/networkError"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Sorry, We Unable to load the data! \n Can you check your internet and retry leter"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

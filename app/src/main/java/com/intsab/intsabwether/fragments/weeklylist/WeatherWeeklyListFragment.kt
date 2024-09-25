@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -65,7 +64,7 @@ class WeatherWeeklyListFragment : BaseFragment() {
 
         viewModel.error.observe(viewLifecycleOwner, Observer { reason ->
             toggleShimmer(false)
-            Toast.makeText(requireContext(), reason, Toast.LENGTH_SHORT).show()
+            binding.networkError.visibility = View.VISIBLE
         })
     }
 
