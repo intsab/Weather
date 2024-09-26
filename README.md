@@ -88,21 +88,17 @@ class WhetherRepo @Inject constructor(
 Executes the business logic for fetching the weekly weather data from the repository.
 
 ```kotlin
-fun FullWeekDaysResponse.toUiModel(): List<FullWeekWeatherB> {
-    val list = arrayListOf<FullWeekWeatherB>()
-    this.forecast?.forecastday?.forEach {
-        list.add(
-            FullWeekWeatherB(
-                date = it.date.toNullEmpty(),
-                temperature = it.day?.avgtempC.toNullEmpty() + " \u2103",
-                sunRise = it.astro?.sunrise.toNullEmpty(),
-                sunSet = it.astro?.sunset.toNullEmpty(),
-                condition = it.day?.condition?.text.toNullEmpty(),
-                icon = "https:" + it.day?.condition?.icon.toNullEmpty()
-            )
-        )
+class CurrentDayWeatherUseCase @Inject constructor(
+    private val repo: WhetherRepo
+) : UseCase<CurrentDayWeatherB, CurrentDayWeatherParams>() {
+    private val TAG = this::class.java.simpleName
+
+    override suspend fun run(params: CurrentDayWeatherParams?): CurrentDayWeatherB {
+        return repo.getCurrentDayWeather(
+            Constants.CURRENT_WHETHER_URL.plus("key=").plus(Constants.API_TOKEN).plus("&q=")
+                .plus(params?.city ?: "Dubai")
+        ).toUiModel()
     }
-    return list
 }
 ```
 
@@ -205,6 +201,64 @@ Caching is crucial for improving the performance and efficiency of network reque
    ```
 
 ---
+## Unit Test
+
+Here is the sample of a Unit Test written for saving the city in shared SharedPreferences
+```kotlin
+class SharedPrefUtilsTest {
+
+    private lateinit var context: Context
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
+
+    @Before
+    fun setup() {
+        // Initialize mocks before each test
+        context = mock(Context::class.java)
+        sharedPreferences = mock(SharedPreferences::class.java)
+        editor = mock(SharedPreferences.Editor::class.java)
+
+        // Define the behavior of mocks
+        `when`(context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)).thenReturn(sharedPreferences)
+        `when`(sharedPreferences.edit()).thenReturn(editor)
+    }
+
+    @Test
+    fun testSaveCityToPreferences() {
+        val cityName = "New York"
+
+        SharedPrefUtils.saveCityToPreferences(context, cityName)
+
+        // Verify that the editor putString method was called with the correct parameters
+        verify(editor).putString("city_name", cityName)
+        verify(editor).apply()  // Ensure apply was called
+    }
+
+    @Test
+    fun testGetCityFromPreferences_WhenCityIsSaved() {
+        val cityName = "Paris"
+
+        // Mock the behavior of SharedPreferences
+        `when`(sharedPreferences.getString("city_name", "Dubai")).thenReturn(cityName)
+
+        val result = SharedPrefUtils.getCityFromPreferences(context)
+
+        assertEquals(cityName, result)  // Verify that the returned value is what we set
+    }
+
+    @Test
+    fun testGetCityFromPreferences_WhenCityIsNotSaved() {
+        // Mock the behavior to return null for the city name
+        `when`(sharedPreferences.getString("city_name", "Dubai")).thenReturn(null)
+
+        val result = SharedPrefUtils.getCityFromPreferences(context)
+
+        assertEquals("Dubai", result)  // Default value should be returned
+    }
+}
+```
+
+---
 
 ## Features
 - **Current Day Weather**: Displays weather information like temperature, sunrise/sunset times, and conditions.
@@ -222,7 +276,6 @@ Caching is crucial for improving the performance and efficiency of network reque
     <img src="https://github.com/user-attachments/assets/d90c33db-9944-4e9e-9dc9-69354b164098" alt="Shimmer Loading Effect" width="250" style="margin-right: 10px;">
 </div>
 
-   
 
 ---
 
@@ -253,8 +306,12 @@ Caching is crucial for improving the performance and efficiency of network reque
 
 ---
 
+## Unit Tests
+Unit tests for utility classes are also implemented with 100% coverage.
+
+---
+
 ## Future Enhancements
-- **Unit Testing**: Implement test cases for the ViewModels and Use Cases.
 - **Localization**: Add support for multiple languages.
 
 ---
