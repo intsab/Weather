@@ -208,18 +208,10 @@ Caching is crucial for improving the performance and efficiency of network reque
 - **Loading Animations**: Shimmer effect during data fetching.
 - **Responsive UI**: Optimized for various screen sizes and orientations.
 - **Offline Mode ()Caching**: Saved Network calls for one hour for the same data.
+
 ---
-
-## Screenshots
-
-<div style="display: flex; overflow-x: auto;">
-    <img src="https://github.com/user-attachments/assets/1fcb06a1-8216-4970-87d5-1b346276ec3c" alt="Home Screen" width="250" style="margin-right: 10px;">
-    <img src="https://github.com/user-attachments/assets/55941ccd-f90b-4cd4-8c32-3eefe4809670" alt="Weekly Forecast" width="250" style="margin-right: 10px;">
-    <img src="https://github.com/user-attachments/assets/d90c33db-9944-4e9e-9dc9-69354b164098" alt="Shimmer Loading Effect" width="250" style="margin-right: 10px;">
-</div>
-
-   
 ## Unit Test
+
 Here is the sample of a Unit Test written for saving the city in shared SharedPreferences
 ```kotlin
 class SharedPrefUtilsTest {
@@ -274,6 +266,17 @@ class SharedPrefUtilsTest {
     }
 }
 ```
+---
+
+## Screenshots
+
+<div style="display: flex; overflow-x: auto;">
+    <img src="https://github.com/user-attachments/assets/1fcb06a1-8216-4970-87d5-1b346276ec3c" alt="Home Screen" width="250" style="margin-right: 10px;">
+    <img src="https://github.com/user-attachments/assets/55941ccd-f90b-4cd4-8c32-3eefe4809670" alt="Weekly Forecast" width="250" style="margin-right: 10px;">
+    <img src="https://github.com/user-attachments/assets/d90c33db-9944-4e9e-9dc9-69354b164098" alt="Shimmer Loading Effect" width="250" style="margin-right: 10px;">
+</div>
+
+
 ---
 
 ## Installation & Setup
