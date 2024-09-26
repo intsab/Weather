@@ -1,7 +1,7 @@
 package com.intsab.intsabwether.utils
 
+import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.junit.jupiter.api.Assertions.*
 
 /**
  * Created by intsabhaider
