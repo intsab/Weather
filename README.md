@@ -201,15 +201,6 @@ Caching is crucial for improving the performance and efficiency of network reque
    ```
 
 ---
-
-## Features
-- **Current Day Weather**: Displays weather information like temperature, sunrise/sunset times, and conditions.
-- **Weekly Weather Forecast**: Provides a 7-day forecast for any city.
-- **Loading Animations**: Shimmer effect during data fetching.
-- **Responsive UI**: Optimized for various screen sizes and orientations.
-- **Offline Mode ()Caching**: Saved Network calls for one hour for the same data.
-
----
 ## Unit Test
 
 Here is the sample of a Unit Test written for saving the city in shared SharedPreferences
@@ -266,6 +257,15 @@ class SharedPrefUtilsTest {
     }
 }
 ```
+
+---
+
+## Features
+- **Current Day Weather**: Displays weather information like temperature, sunrise/sunset times, and conditions.
+- **Weekly Weather Forecast**: Provides a 7-day forecast for any city.
+- **Loading Animations**: Shimmer effect during data fetching.
+- **Responsive UI**: Optimized for various screen sizes and orientations.
+- **Offline Mode ()Caching**: Saved Network calls for one hour for the same data.
 ---
 
 ## Screenshots
