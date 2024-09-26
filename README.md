@@ -88,21 +88,17 @@ class WhetherRepo @Inject constructor(
 Executes the business logic for fetching the weekly weather data from the repository.
 
 ```kotlin
-fun FullWeekDaysResponse.toUiModel(): List<FullWeekWeatherB> {
-    val list = arrayListOf<FullWeekWeatherB>()
-    this.forecast?.forecastday?.forEach {
-        list.add(
-            FullWeekWeatherB(
-                date = it.date.toNullEmpty(),
-                temperature = it.day?.avgtempC.toNullEmpty() + " \u2103",
-                sunRise = it.astro?.sunrise.toNullEmpty(),
-                sunSet = it.astro?.sunset.toNullEmpty(),
-                condition = it.day?.condition?.text.toNullEmpty(),
-                icon = "https:" + it.day?.condition?.icon.toNullEmpty()
-            )
-        )
+class CurrentDayWeatherUseCase @Inject constructor(
+    private val repo: WhetherRepo
+) : UseCase<CurrentDayWeatherB, CurrentDayWeatherParams>() {
+    private val TAG = this::class.java.simpleName
+
+    override suspend fun run(params: CurrentDayWeatherParams?): CurrentDayWeatherB {
+        return repo.getCurrentDayWeather(
+            Constants.CURRENT_WHETHER_URL.plus("key=").plus(Constants.API_TOKEN).plus("&q=")
+                .plus(params?.city ?: "Dubai")
+        ).toUiModel()
     }
-    return list
 }
 ```
 
